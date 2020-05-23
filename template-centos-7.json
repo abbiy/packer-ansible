@@ -14,7 +14,7 @@
     "aws_source_ami": "",
     "aws_ssh_keypair_name": "aws-default-key-pair",
     "aws_ssh_private_key_file": "~/.ssh/aws-default-key-pair.pem",
-    "aws_ssh_username": "",
+    "aws_ssh_username": "ec2-user",
     "aws_subnet_id": "",
     "aws_vpc_id": "",
     "build_timestamp": "{{timestamp}}",
@@ -180,12 +180,12 @@
         "ANSIBLE_VERSION={{user `ansible_version`}}"
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/ansible.sh",
+      "script": "scripts/ansible-centos.sh",
       "type": "shell"
     },
     {
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/setup.sh",
+      "script": "scripts/setup-centos.sh",
       "type": "shell"
     },
     {
@@ -196,7 +196,7 @@
     },
     {
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/cleanup.sh",
+      "script": "scripts/cleanup-centos.sh",
       "type": "shell"
     }
   ]

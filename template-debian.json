@@ -1,5 +1,9 @@
 {
   "variables": {
+    "ansible_galaxy_file": "requirements.yaml",
+    "ansible_playbook_dir": "",
+    "ansible_playbook_file": "playbook.yaml",
+    "ansible_version": "",
     "aws_access_key": "",
     "aws_ami_regions": "us-east-1",
     "aws_image_name": "packer",
@@ -19,14 +23,12 @@
     "iso_checksum_type": "sha256",
     "iso_url": "",
     "memory": "4096",
-    "ssh_password": "vagrant",
-    "ssh_username": "vagrant",
     "virtualbox_artifact_description": "",
     "virtualbox_artifact_version": "",
     "virtualbox_guest_os_type": "Debian_64",
-    "vm_name": "packer-senzing-demo-kafka-postgres-debian",
+    "vm_name": "packer-senzing-debian",
     "vmware_guest_os_type": "debian-64",
-    "vmware_vmdk_name": "packer-senzing-demo-kafka-postgres-debian"
+    "vmware_vmdk_name": "packer-senzing-debian"
   },
   "builders": [
     {
@@ -88,10 +90,10 @@
       "memory": "{{user `memory`}}",
       "output_directory": "output-virtualbox-iso-{{user `build_timestamp`}}",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "2h",
-      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_username": "vagrant",
       "type": "virtualbox-iso",
       "vboxmanage": [
         [
@@ -175,10 +177,10 @@
       "iso_url": "{{user `iso_url`}}",
       "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
-      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "2h",
-      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_username": "vagrant",
       "tools_upload_flavor": "linux",
       "type": "vmware-iso",
       "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
@@ -204,27 +206,27 @@
   ],
   "provisioners": [
     {
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/ansible.sh",
-      "type": "shell"
-    },
-    {
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/setup.sh",
-      "type": "shell"
-    },
-    {
-      "galaxy_file": "ansible/requirements.yaml",
-      "playbook_dir": "ansible",
-      "playbook_file": "ansible/playbook.yaml",
-      "role_paths": [
-        "ansible/roles/nginx"
+      "environment_vars": [
+        "ANSIBLE_VERSION={{user `ansible_version`}}"
       ],
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ansible-debian.sh",
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/setup-debian.sh",
+      "type": "shell"
+    },
+    {
+      "galaxy_file": "{{user `ansible_galaxy_file`}}",
+      "playbook_dir": "{{user `ansible_playbook_dir`}}",
+      "playbook_file": "{{user `ansible_playbook_file`}}",
       "type": "ansible-local"
     },
     {
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/cleanup.sh",
+      "script": "scripts/cleanup-debian.sh",
       "type": "shell"
     }
   ]
