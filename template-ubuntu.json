@@ -1,0 +1,248 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_ami_regions": "us-east-1",
+    "aws_image_name": "packer",
+    "aws_instance_type": "t2.micro",
+    "aws_mfa_code": "",
+    "aws_region": "us-east-1",
+    "aws_secret_key": "",
+    "aws_source_ami": "",
+    "aws_ssh_keypair_name": "aws-default-key-pair",
+    "aws_ssh_private_key_file": "~/.ssh/aws-default-key-pair.pem",
+    "aws_ssh_username": "ec2-user",
+    "aws_subnet_id": "",
+    "aws_vpc_id": "",
+    "build_timestamp": "{{timestamp}}",
+    "disk_size": "40520",
+    "iso_checksum": "",
+    "iso_checksum_type": "sha256",
+    "iso_url": "",
+    "memory": "4096",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "virtualbox_artifact_description": "",
+    "virtualbox_artifact_version": "",
+    "virtualbox_guest_os_type": "ubuntu-64",
+    "vm_name": "packer-senzing-demo-kafka-postgres-ubuntu",
+    "vmware_guest_os_type": "ubuntu-64",
+    "vmware_vmdk_name": "packer-senzing-demo-kafka-postgres-ubuntu"
+  },
+  "builders": [
+    {
+      "access_key": "{{user `aws_access_key`}}",
+      "ami_description": "Build time: {{isotime \"2006-01-02_03:04:05\"}}",
+      "ami_name": "{{user `aws_image_name`}}-{{user `build_timestamp`}}",
+      "ami_regions": "{{user `aws_ami_regions`}}",
+      "ami_virtualization_type": "hvm",
+      "associate_public_ip_address": true,
+      "instance_type": "{{user `aws_instance_type`}}",
+      "mfa_code": "{{user `aws_mfa_code`}}",
+      "region": "{{user `aws_region`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+      "source_ami": "{{user `aws_source_ami`}}",
+      "ssh_keypair_name": "{{user `aws_ssh_keypair_name`}}",
+      "ssh_private_key_file": "{{user `aws_ssh_private_key_file`}}",
+      "ssh_username": "{{user `aws_ssh_username`}}",
+      "subnet_id": "{{user `aws_subnet_id`}}",
+      "type": "amazon-ebs",
+      "vpc_id": "{{user `aws_vpc_id`}}"
+    },
+    {
+      "boot_command": [
+        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
+        " debconf/frontend=noninteractive<wait>",
+        " debian-installer=en_US<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US<wait>",
+        " netcfg/get_domain=vm<wait>",
+        " netcfg/get_hostname=vagrant<wait>",
+        " grub-installer/bootdev=/dev/sda<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-ubuntu.cfg",
+        " -- <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "{{user `disk_size`}}",
+      "export_opts": [
+        "--manifest",
+        "--vsys",
+        "0",
+        "--description",
+        "{{user `virtualbox_artifact_description`}}",
+        "--version",
+        "{{user `virtualbox_artifact_version`}}"
+      ],
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "guest_os_type": "{{user `virtualbox_guest_os_type`}}",
+      "headless": false,
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "memory": "{{user `memory`}}",
+      "output_directory": "output-virtualbox-iso-{{user `build_timestamp`}}",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_timeout": "2h",
+      "ssh_username": "{{user `ssh_username`}}",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "8096"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vram",
+          "12"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--natpf1",
+          "SSH,tcp,127.0.0.1,2222,,22"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--natpf1",
+          "pgAdmin4,tcp,127.0.0.1,5051,,5051"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--natpf1",
+          "phppgadmin,tcp,127.0.0.1,5052,,5052"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--natpf1",
+          "entity-search-web-app,tcp,127.0.0.1,8081,,8081"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--natpf1",
+          "jupyter-notebook,tcp,127.0.0.1,8888,,8888"
+        ]
+      ],
+      "virtualbox_version_file": ".vbox_version",
+      "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}"
+    },
+    {
+      "boot_command": [
+        "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+        "/install/vmlinuz<wait>",
+        " auto<wait>",
+        " console-setup/ask_detect=false<wait>",
+        " console-setup/layoutcode=us<wait>",
+        " console-setup/modelcode=pc105<wait>",
+        " debconf/frontend=noninteractive<wait>",
+        " debian-installer=en_US<wait>",
+        " fb=false<wait>",
+        " initrd=/install/initrd.gz<wait>",
+        " kbd-chooser/method=us<wait>",
+        " keyboard-configuration/layout=USA<wait>",
+        " keyboard-configuration/variant=USA<wait>",
+        " locale=en_US<wait>",
+        " netcfg/get_domain=vm<wait>",
+        " netcfg/get_hostname=vagrant<wait>",
+        " grub-installer/bootdev=/dev/sda<wait>",
+        " noapic<wait>",
+        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed-ubuntu.cfg",
+        " -- <wait>",
+        "<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "{{user `disk_size`}}",
+      "guest_os_type": "{{user `vmware_guest_os_type`}}",
+      "headless": false,
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_timeout": "2h",
+      "ssh_username": "{{user `ssh_username`}}",
+      "tools_upload_flavor": "linux",
+      "type": "vmware-iso",
+      "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
+      "vmdk_name": "{{user `vmware_vmdk_name`}}-{{user `build_timestamp`}}",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1"
+      }
+    }
+  ],
+  "post-processors": [
+    {
+      "keep_input_artifact": true,
+      "override": {
+        "virtualbox": {
+          "output": "{{user `vm_name`}}-virtualbox-{{user `build_timestamp`}}.box"
+        },
+        "vmware": {
+          "output": "{{user `vm_name`}}-vmware-{{user `build_timestamp`}}.box"
+        }
+      },
+      "type": "vagrant"
+    }
+  ],
+  "provisioners": [
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/ansible.sh",
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/setup.sh",
+      "type": "shell"
+    },
+    {
+      "galaxy_file": "ansible/requirements.yaml",
+      "playbook_dir": "ansible",
+      "playbook_file": "ansible/playbook.yaml",
+      "role_paths": [
+        "ansible/roles/nginx"
+      ],
+      "type": "ansible-local"
+    },
+    {
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "script": "scripts/cleanup.sh",
+      "type": "shell"
+    }
+  ]
+}
+

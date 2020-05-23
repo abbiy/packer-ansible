@@ -1,0 +1,8 @@
+{
+  "aws_source_ami": "ami-085925f297f89fce1",
+  "aws_ssh_username": "ubuntu",
+  "iso_checksum": "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
+  "iso_url": "http://cdimage.ubuntu.com/releases/18.04.4/release/ubuntu-18.04.4-server-amd64.iso",
+  "virtualbox_guest_os_type": "Ubuntu_64",
+  "vmware_guest_os_type": "ubuntu-64"
+}
