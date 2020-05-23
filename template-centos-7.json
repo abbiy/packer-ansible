@@ -34,7 +34,7 @@
     {
       "access_key": "{{user `aws_access_key`}}",
       "ami_description": "Build time: {{isotime \"2006-01-02_03:04:05\"}}",
-      "ami_name": "{{user `aws_image_name`}}-{{user `build_timestamp`}}",
+      "ami_name": "{{user `aws_image_name`}}-centos-{{user `build_timestamp`}}",
       "ami_regions": "{{user `aws_ami_regions`}}",
       "ami_virtualization_type": "hvm",
       "associate_public_ip_address": true,

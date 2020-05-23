@@ -143,8 +143,8 @@ make virtualbox-iso
    Example:
 
     ```console
-    export VAGRANT_NAME=packer-centos-virtualbox
-    export VIRTUALBOX_FILE=./packer-centos-18.04-virtualbox-nnnnnnnnnn.box
+    export VAGRANT_NAME=packer-xxxxxx-virtualbox
+    export VIRTUALBOX_FILE=./packer-senzing-xxxxxx-virtualbox-nnnnnnnnnn.box
     ```
 
 1. Add VirtualBox image to `vagrant`
