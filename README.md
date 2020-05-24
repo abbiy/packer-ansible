@@ -17,6 +17,7 @@ The virtual machines have the following installed:
     1. [Prerequisite software](#prerequisite-software)
     1. [Clone repository](#clone-repository)
     1. [Create AWS access key](#create-aws-access-key)
+    1. [Custom var file](#custom-var-file)
     1. [Build using template-centos-7](#build-using-template-centos-7)
 1. [Run on VMware Workstation](#run-on-vmware-workstation)
 1. [Run on Vagrant / VirtualBox](#run-on-vagrant--virtualbox)
@@ -114,6 +115,31 @@ and is accessed by the Packer `amazon-ebs` builder.
 1. References:
     1. Packer [using AWS authentication](https://www.packer.io/docs/builders/amazon/#authentication)
 
+### Custom var file
+
+:thinking: The `Makefile` uses the following files to create virtual images:
+
+1. `TEMPLATE_FILE` - The Packer `template.json` file used in the build.
+1. `PLATFORM_VAR_FILE` - A file of variables specifying a base image (ISO, AMI, etc.)
+1. `CUSTOM_VAR_FILE` - A user-configurable file specifying values to use during the build.
+
+In the examples below, the `CUSTOM_VAR_FILE` is set to `vars/custom-var.json`
+which is an empty file.
+In practice, this value should be modified to point to a user's custom file of variables.
+
+The `CUSTOM_VAR_FILE`, can be used to:
+
+1. Specify an Ansible playbook.
+1. Add Multifactor Authentication information
+1. Specify SSH keys
+1. Change disk or memory size
+
+Example:
+
+```console
+export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
+```
+
 ### Build using template-centos-7
 
 #### CentOS 7.6
@@ -124,7 +150,8 @@ and is accessed by the Packer `amazon-ebs` builder.
     ```console
     cd ${GIT_REPOSITORY_DIR}
     export TEMPLATE_FILE=template-centos-7.json
-    export VAR_FILE=vars/centos-07.06.json
+    export PLATFORM_VAR_FILE=vars/centos-07.06.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
     make amazon-ebs
     ```
 
@@ -134,7 +161,8 @@ and is accessed by the Packer `amazon-ebs` builder.
     ```console
     cd ${GIT_REPOSITORY_DIR}
     export TEMPLATE_FILE=template-centos-7.json
-    export VAR_FILE=vars/centos-07.06.json
+    export PLATFORM_VAR_FILE=vars/centos-07.06.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
     make virtualbox-iso
     ```
 
@@ -144,7 +172,8 @@ and is accessed by the Packer `amazon-ebs` builder.
     ```console
     cd ${GIT_REPOSITORY_DIR}
     export TEMPLATE_FILE=template-centos-7.json
-    export VAR_FILE=vars/centos-07.06.json
+    export PLATFORM_VAR_FILE=vars/centos-07.06.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
     make vmware-iso
     ```
 
