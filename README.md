@@ -144,8 +144,9 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 #### CentOS 7.6
 
-1. **amazon-iso**
-   Example:
+##### CentOS 7.6 amazon-iso
+
+1. Example:
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
@@ -155,8 +156,9 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     make amazon-ebs
     ```
 
-1. **virtualbox-iso**
-   Example:
+##### CentOS 7.6 virtualbox-iso
+
+1. Example:
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
@@ -166,8 +168,9 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     make virtualbox-iso
     ```
 
-1. **vmware-iso**
-   Example:
+##### CentOS 7.6 vmware-iso
+
+1. Example:
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
