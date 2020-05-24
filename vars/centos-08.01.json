@@ -1,8 +1,12 @@
 {
+  "aws_image_name": "packer-centos-8.1",
   "aws_source_ami": "ami-0323c3dd2da7fb37d",
-  "aws_ssh_username": "ec2-user",
   "iso_checksum": "7fea13202bf2f26989df4175aace8fdc16e1137f7961c33512cbfad844008948",
   "iso_url": "http://miroir.univ-paris13.fr/centos/8/isos/x86_64/CentOS-8.1.1911-x86_64-boot.iso",
+  "virtualbox_artifact_description": "Centos 8.1.0",
+  "virtualbox_artifact_version": "8.1",
   "virtualbox_guest_os_type": "RedHat_64",
-  "vmware_guest_os_type": "centos-64"
+  "vm_name": "packer-senzing-centos-8.1",
+  "vmware_guest_os_type": "centos-64",
+  "vmware_vmdk_name": "packer-senzing-centos-8.1"
 }
