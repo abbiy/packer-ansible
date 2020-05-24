@@ -13,11 +13,11 @@ The virtual machines have the following installed:
 ### Contents
 
 1. [Expectations](#expectations)
-1. [Build dependencies](#build-dependencies)
 1. [Build](#build)
-    1. [amazon-ebs preparation](#amazon-ebs-preparation)
-    1. [Build all versions](#build-all-versions)
-    1. [Build specific version](#build-specific-version)
+    1. [Prerequisite software](#prerequisite-software)
+    1. [Clone repository](#clone-repository)
+    1. [Create AWS access key](#create-aws-access-key)
+    1. [Build using template-centos-7](#build-using-template-centos-7)
 1. [Run on VMware Workstation](#run-on-vmware-workstation)
 1. [Run on Vagrant / VirtualBox](#run-on-vagrant--virtualbox)
     1. [Add to library](#add-to-library)
@@ -43,25 +43,40 @@ The virtual machines have the following installed:
 - **Background knowledge:** This repository assumes a working knowledge of:
   - [Packer](https://github.com/Senzing/knowledge-base/blob/master/WHATIS/packer.md)
 
-## Build dependencies
-
-See [build dependencies](https://github.com/docktermj/KnowledgeBase/blob/master/build-dependencies/packer.md).
-
 ## Build
 
-Use `make help` to see targets.
+### Prerequisite software
 
-### amazon-ebs preparation
+The following software programs need to be installed:
 
-#### Install aws cli
+1. [git](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-git.md)
+1. [make](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-make.md)
+1. [packer](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-packer.md)
+1. Builders (not all may be needed):
+    1. [AWS commandline interface](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-aws-cli.md)
+    1. [VMware Workstation](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-vmware-workstation.md)
+    1. [Vagrant](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-vagrant.md)
+    1. [VirtualBox](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-virtualbox.md)
 
-:thinking: **Optional:** The following instructions show how to install the `aws` command line interface.
+### Clone repository
 
-1. [Installing the AWS CLI version 2 on Linux](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html)
+For more information on environment variables,
+see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/master/lists/environment-variables.md).
 
-#### Create AWS access key
+1. Set these environment variable values:
 
-An AWS access key is needed by Packer to access the account.
+    ```console
+    export GIT_ACCOUNT=senzing
+    export GIT_REPOSITORY=packer-ansible
+    export GIT_ACCOUNT_DIR=~/${GIT_ACCOUNT}.git
+    export GIT_REPOSITORY_DIR="${GIT_ACCOUNT_DIR}/${GIT_REPOSITORY}"
+    ```
+
+1. Follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/clone-repository.md) to install the Git repository.
+
+### Create AWS access key
+
+:thinking: **Optional:** If creating an AWS AMI, an AWS access key is needed by Packer to access the account.
 This information is usually kept in `~/.aws/credentials`
 and is accessed by the Packer `amazon-ebs` builder.
 
@@ -99,25 +114,39 @@ and is accessed by the Packer `amazon-ebs` builder.
 1. References:
     1. Packer [using AWS authentication](https://www.packer.io/docs/builders/amazon/#authentication)
 
-### Build all versions
+### Build using template-centos-7
 
-```console
-make all
-```
+#### CentOS 7.6
 
-### Build specific version
+1. **amazon-iso**
+   Example:
 
-VMware
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-centos-7.json
+    export VAR_FILE=vars/centos-07.06.json
+    make amazon-ebs
+    ```
 
-```console
-make vmware-iso
-```
+1. **virtualbox-iso**
+   Example:
 
-VirtualBox
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-centos-7.json
+    export VAR_FILE=vars/centos-07.06.json
+    make virtualbox-iso
+    ```
 
-```console
-make virtualbox-iso
-```
+1. **vmware-iso**
+   Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-centos-7.json
+    export VAR_FILE=vars/centos-07.06.json
+    make vmware-iso
+    ```
 
 ## Run on VMware Workstation
 
