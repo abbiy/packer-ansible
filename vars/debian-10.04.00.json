@@ -1,0 +1,12 @@
+{
+  "aws_image_name": "packer-debian-10.4.0",
+  "aws_source_ami": "",
+  "iso_checksum": "ab3763d553330e90869487a6843c88f1d4aa199333ff16b653e60e59ac1fc60b",
+  "iso_url": "http://cdimage.debian.org/mirror/debian-cd/current/amd64/iso-cd/debian-10.4.0-amd64-netinst.iso",
+  "virtualbox_artifact_description": "Debian 10.4.0",
+  "virtualbox_artifact_version": "10.4.0",
+  "virtualbox_guest_os_type": "Debian_64",
+  "vm_name": "packer-senzing-debian-10.4",
+  "vmware_guest_os_type": "debian10-64",
+  "vmware_vmdk_name": "packer-senzing-debian-10.4"
+}
