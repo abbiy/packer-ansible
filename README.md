@@ -198,6 +198,24 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     make virtualbox-iso
     ```
 
+### Build using template-debian
+
+#### Debian 10.04.00
+
+1. Linux 4.19 kernel
+
+##### Debian 10.04.00 virtualbox-iso
+
+1. Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-debian.json
+    export PLATFORM_VAR_FILE=vars/debian-10.04.00.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make virtualbox-iso
+    ```
+
 ### Build using template-ubuntu
 
 #### Ubuntu 18.04.04
