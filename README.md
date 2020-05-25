@@ -14,6 +14,8 @@ VMware, VirtualBox, or AWS AMI.
     1. [Create AWS access key](#create-aws-access-key)
     1. [Custom var file](#custom-var-file)
     1. [Build using template-centos-7](#build-using-template-centos-7)
+    1. [Build using template-centos-8](#build-using-template-centos-8)
+    1. [Build using template-ubuntu](#build-using-template-ubuntu)
 1. [Run on VMware Workstation](#run-on-vmware-workstation)
 1. [Run on Vagrant / VirtualBox](#run-on-vagrant--virtualbox)
     1. [Add to library](#add-to-library)
@@ -166,6 +168,8 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     make vmware-iso
     ```
 
+### Build using template-centos-8
+
 #### CentOS 8.1
 
 1. Linux 4.x kernel
@@ -193,6 +197,8 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     export CUSTOM_VAR_FILE=vars/custom-var.json
     make virtualbox-iso
     ```
+
+### Build using template-ubuntu
 
 #### Ubuntu 18.04.04
 
