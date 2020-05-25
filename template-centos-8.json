@@ -52,7 +52,7 @@
     },
     {
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-7.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-8.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
@@ -74,7 +74,7 @@
       "iso_url": "{{user `iso_url`}}",
       "memory": "{{user `memory`}}",
       "output_directory": "output-virtualbox-iso-{{user `build_timestamp`}}",
-      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "2h",
@@ -135,7 +135,7 @@
     },
     {
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-7.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-8.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
@@ -146,7 +146,7 @@
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
       "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
-      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_timeout": "2h",
