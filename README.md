@@ -174,7 +174,7 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 1. Linux 4.x kernel
 
-##### CentOS 8.1 amazon-iso
+##### CentOS 8.1 amazon-ebs
 
 1. Example:
 
@@ -204,11 +204,16 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 1. Linux 4.x kernel
 
-##### Ubuntu 18.04.04 amazon-iso
+##### Ubuntu 18.04.04 amazon-ebs
 
 1. Example:
 
     ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-ubuntu.json
+    export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make amazon-ebs
     ```
 
 ##### Ubuntu 18.04.04 virtualbox-iso
@@ -216,6 +221,11 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 1. Example:
 
     ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-ubuntu.json
+    export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make virtualbox-iso
     ```
 
 ##### Ubuntu 18.04.04 vmware-iso
