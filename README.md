@@ -1,14 +1,9 @@
-# packer-senzing-demo-kafka-postgres
+# packer-ansible
 
 ## Overview
 
 This repository uses [Packer](https://www.packer.io/) to build a virtual machines for
 VMware, VirtualBox, or AWS AMI.
-
-The virtual machines have the following installed:
-
-- [Senzing API Server](https://github.com/Senzing/senzing-api-server)
-- [Senzing Entity Search webapp](https://github.com/Senzing/entity-search-web-app)
 
 ### Contents
 
@@ -27,6 +22,7 @@ The virtual machines have the following installed:
     1. [Find guest machine IP address](#find-guest-machine-ip-address)
     1. [Remote login to guest machine](#remote-login-to-guest-machine)
     1. [Remove image from Vagrant library](#remove-image-from-vagrant-library)
+1. [Archive builds](#archive-builds)
 1. [References](#references)
 
 #### Legend
@@ -144,17 +140,7 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 #### CentOS 7.6
 
-##### CentOS 7.6 amazon-iso
-
-1. Example:
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-centos-7.json
-    export PLATFORM_VAR_FILE=vars/centos-07.06.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make amazon-ebs
-    ```
+1. Linux 3.x kernel
 
 ##### CentOS 7.6 virtualbox-iso
 
@@ -179,6 +165,44 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     export CUSTOM_VAR_FILE=vars/custom-var.json
     make vmware-iso
     ```
+
+#### CentOS 8.1
+
+1. Linux 4.x kernel
+
+##### CentOS 8.1 amazon-iso
+
+1. Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-centos-8.json
+    export PLATFORM_VAR_FILE=vars/centos-08.01.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make amazon-ebs
+    ```
+
+##### CentOS 8.1 virtualbox-iso
+
+1. Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-centos-8.json
+    export PLATFORM_VAR_FILE=vars/centos-08.01.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make virtualbox-iso
+    ```
+
+#### Ubuntu 18.04.04
+
+1. Linux 4.x kernel
+
+##### Ubuntu 18.04.04 amazon-iso
+
+##### Ubuntu 18.04.04 virtualbox-iso
+
+##### Ubuntu 18.04.04 vmware-iso
 
 ## Run on VMware Workstation
 
@@ -289,6 +313,8 @@ To remove Vagrant image, on host machine:
 ```console
 vagrant box remove ${VAGRANT_NAME}
 ```
+
+## Archive builds
 
 ## References
 

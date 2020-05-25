@@ -52,7 +52,7 @@
     },
     {
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-7.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
@@ -135,7 +135,7 @@
     },
     {
       "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos.cfg<enter><wait>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-7.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
@@ -164,6 +164,9 @@
     {
       "keep_input_artifact": true,
       "override": {
+        "amazon": {
+          "output": "{{user `vm_name`}}-amazon-{{user `build_timestamp`}}.box"
+        },
         "virtualbox": {
           "output": "{{user `vm_name`}}-virtualbox-{{user `build_timestamp`}}.box"
         },
