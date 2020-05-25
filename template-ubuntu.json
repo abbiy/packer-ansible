@@ -210,6 +210,9 @@
     {
       "keep_input_artifact": true,
       "override": {
+        "aws": {
+          "output": "{{user `aws_image_name`}}-aws-{{user `build_timestamp`}}.box"
+        },
         "virtualbox": {
           "output": "{{user `vm_name`}}-virtualbox-{{user `build_timestamp`}}.box"
         },

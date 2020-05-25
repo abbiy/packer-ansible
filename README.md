@@ -206,9 +206,29 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 ##### Ubuntu 18.04.04 amazon-iso
 
+1. Example:
+
+    ```console
+    ```
+
 ##### Ubuntu 18.04.04 virtualbox-iso
 
+1. Example:
+
+    ```console
+    ```
+
 ##### Ubuntu 18.04.04 vmware-iso
+
+1. Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-ubuntu.json
+    export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make vmware-iso
+    ```
 
 ## Run on VMware Workstation
 
