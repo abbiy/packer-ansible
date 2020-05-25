@@ -7,6 +7,6 @@
   "virtualbox_artifact_version": "6.8",
   "virtualbox_guest_os_type": "Debian_64",
   "vm_name": "packer-senzing-debian-9.12",
-  "vmware_guest_os_type": "debian-64",
+  "vmware_guest_os_type": "debian9-64",
   "vmware_vmdk_name": "packer-senzing-debian-9.12"
 }

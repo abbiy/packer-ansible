@@ -164,8 +164,8 @@
     {
       "keep_input_artifact": true,
       "override": {
-        "amazon": {
-          "output": "{{user `vm_name`}}-amazon-{{user `build_timestamp`}}.box"
+        "aws": {
+          "output": "{{user `aws_image_name`}}-aws-{{user `build_timestamp`}}.box"
         },
         "virtualbox": {
           "output": "{{user `vm_name`}}-virtualbox-{{user `build_timestamp`}}.box"
