@@ -1,12 +1,12 @@
 {
-  "aws_image_name": "packer-ubuntu-18.04.4",
+  "aws_image_name": "senzing-packer-ubuntu-18.04.4",
   "aws_source_ami": "ami-085925f297f89fce1",
   "iso_checksum": "e2ecdace33c939527cbc9e8d23576381c493b071107207d2040af72595f8990b",
   "iso_url": "http://cdimage.ubuntu.com/releases/18.04.4/release/ubuntu-18.04.4-server-amd64.iso",
   "virtualbox_artifact_description": "Ubuntu 18.04.4",
   "virtualbox_artifact_version": "18.04.4",
   "virtualbox_guest_os_type": "Ubuntu_64",
-  "vm_name": "packer-senzing-ubuntu-18.04.4",
+  "vm_name": "senzing-packer-ubuntu-18.04.4",
   "vmware_guest_os_type": "ubuntu-64",
-  "vmware_vmdk_name": "packer-senzing-ubuntu-18.04.4"
+  "vmware_vmdk_name": "senzing-packer-ubuntu-18.04.4"
 }

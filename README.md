@@ -204,6 +204,24 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 1. Linux 4.19 kernel
 
+##### Debian 10.04.00 amazon-ebs
+
+1. To use AWS Debian AMI, a subscription is required:
+    1. [Debian 10.4](https://aws.amazon.com/marketplace/pp/Debian-Debian-10-Buster/B0859NK4HC)
+        1. `ami-0b9a611a02047d3b1` - US East (N.Virginia)
+
+1. Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-debian.json
+    export PLATFORM_VAR_FILE=vars/debian-10.04.00.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make amazon-ebs
+    ```
+
+1. User name: `admin`
+
 ##### Debian 10.04.00 virtualbox-iso
 
 1. Example:
@@ -220,7 +238,7 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 #### Ubuntu 18.04.04
 
-1. Linux 4.x kernel
+1. Linux 4.15 kernel
 
 ##### Ubuntu 18.04.04 amazon-ebs
 
@@ -263,14 +281,14 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 1. Choose VMX file
     1. VMware Workstation > File > Open...
         1. Navigate to `.../output-vmware-iso-nnnnnnnnnn/`
-        1. Choose `packer-senzing-xxxxxx-nnnnnnnnnn.vmx`
+        1. Choose `senzing-packer-xxxxxx-nnnnnnnnnn.vmx`
 1. Optional: Change networking
-    1. Navigate to VMware Workstation > My Computer > packer-senzing-xxxxx-nnnnnnnnnn
-    1. Right click on "packer-senzing-xxxxxx-nnnnnnnnnn" and choose "Settings"
+    1. Navigate to VMware Workstation > My Computer > senzing-packer-xxxxx-nnnnnnnnnn
+    1. Right click on "senzing-packer-xxxxxx-nnnnnnnnnn" and choose "Settings"
     1. Choose "Network Adapter" > "Network Connection" > :radio_button: Bridged: Connected directly to the physical network
     1. Click "Save"
 1. Run image
-    1. Choose VMware Workstation > My Computer > packer-senzing-xxxxx-nnnnnnnnnn
+    1. Choose VMware Workstation > My Computer > senzing-packer-xxxxx-nnnnnnnnnn
     1. Click "Start up this guest operating system"
 1. Username: vagrant  Password: vagrant
 
@@ -283,7 +301,7 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
     ```console
     export VAGRANT_NAME=packer-xxxxxx-virtualbox
-    export VIRTUALBOX_FILE=./packer-senzing-xxxxxx-virtualbox-nnnnnnnnnn.box
+    export VIRTUALBOX_FILE=./senzing-packer-xxxxxx-virtualbox-nnnnnnnnnn.box
     ```
 
 1. Add VirtualBox image to `vagrant`

@@ -26,9 +26,9 @@
     "virtualbox_artifact_description": "",
     "virtualbox_artifact_version": "",
     "virtualbox_guest_os_type": "ubuntu-64",
-    "vm_name": "packer-senzing-ubuntu",
+    "vm_name": "senzing-packer-ubuntu",
     "vmware_guest_os_type": "ubuntu-64",
-    "vmware_vmdk_name": "packer-senzing-ubuntu"
+    "vmware_vmdk_name": "senzing-packer-ubuntu"
   },
   "builders": [
     {

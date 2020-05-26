@@ -26,9 +26,9 @@
     "virtualbox_artifact_description": "",
     "virtualbox_artifact_version": "",
     "virtualbox_guest_os_type": "RedHat_64",
-    "vm_name": "packer-senzing-centos",
+    "vm_name": "senzing-packer-centos",
     "vmware_guest_os_type": "centos-64",
-    "vmware_vmdk_name": "packer-senzing-centos"
+    "vmware_vmdk_name": "senzing-packer-centos"
   },
   "builders": [
     {
@@ -156,7 +156,8 @@
       "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
       "vmdk_name": "{{user `vmware_vmdk_name`}}-{{user `build_timestamp`}}",
       "vmx_data": {
-        "cpuid.coresPerSocket": "1"
+        "cpuid.coresPerSocket": "1",
+        "virtualHW.version": "14"
       }
     }
   ],
