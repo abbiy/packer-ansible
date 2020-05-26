@@ -156,7 +156,8 @@
       "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
       "vmdk_name": "{{user `vmware_vmdk_name`}}-{{user `build_timestamp`}}",
       "vmx_data": {
-        "cpuid.coresPerSocket": "1"
+        "cpuid.coresPerSocket": "1",
+        "virtualHW.version": "14"
       }
     }
   ],

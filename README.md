@@ -204,6 +204,23 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 1. Linux 4.19 kernel
 
+##### Debian 10.04.00 amazon-ebs
+
+To use AWS Debian AMI, a subscription is required:
+
+1. [Debian 10.4](https://aws.amazon.com/marketplace/pp/Debian-Debian-10-Buster/B0859NK4HC)
+    1. `ami-0b9a611a02047d3b1` - US East (N.Virginia)
+
+1. Example:
+
+    ```console
+    cd ${GIT_REPOSITORY_DIR}
+    export TEMPLATE_FILE=template-debian.json
+    export PLATFORM_VAR_FILE=vars/debian-10.04.00.json
+    export CUSTOM_VAR_FILE=vars/custom-var.json
+    make amazon-ebs
+    ```
+
 ##### Debian 10.04.00 virtualbox-iso
 
 1. Example:
