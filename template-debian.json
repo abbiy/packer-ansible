@@ -26,9 +26,9 @@
     "virtualbox_artifact_description": "",
     "virtualbox_artifact_version": "",
     "virtualbox_guest_os_type": "Debian_64",
-    "vm_name": "packer-senzing-debian",
+    "vm_name": "senzing-packer-debian",
     "vmware_guest_os_type": "debian-64",
-    "vmware_vmdk_name": "packer-senzing-debian"
+    "vmware_vmdk_name": "senzing-packer-debian"
   },
   "builders": [
     {
