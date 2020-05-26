@@ -206,10 +206,9 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
 ##### Debian 10.04.00 amazon-ebs
 
-To use AWS Debian AMI, a subscription is required:
-
-1. [Debian 10.4](https://aws.amazon.com/marketplace/pp/Debian-Debian-10-Buster/B0859NK4HC)
-    1. `ami-0b9a611a02047d3b1` - US East (N.Virginia)
+1. To use AWS Debian AMI, a subscription is required:
+    1. [Debian 10.4](https://aws.amazon.com/marketplace/pp/Debian-Debian-10-Buster/B0859NK4HC)
+        1. `ami-0b9a611a02047d3b1` - US East (N.Virginia)
 
 1. Example:
 
@@ -220,6 +219,8 @@ To use AWS Debian AMI, a subscription is required:
     export CUSTOM_VAR_FILE=vars/custom-var.json
     make amazon-ebs
     ```
+
+1. User name: `admin`
 
 ##### Debian 10.04.00 virtualbox-iso
 
@@ -237,7 +238,7 @@ To use AWS Debian AMI, a subscription is required:
 
 #### Ubuntu 18.04.04
 
-1. Linux 4.x kernel
+1. Linux 4.15 kernel
 
 ##### Ubuntu 18.04.04 amazon-ebs
 
