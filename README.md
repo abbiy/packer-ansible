@@ -220,8 +220,6 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
     make amazon-ebs
     ```
 
-1. User name: `admin`
-
 ##### Debian 10.04.00 virtualbox-iso
 
 1. Example:
