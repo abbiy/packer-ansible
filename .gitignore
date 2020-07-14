@@ -1,8 +1,11 @@
 # Cache objects
 packer_cache/
 
-# Crash log
-crash.log
+# Output directories
+output-*/
 
 # For built boxes
 *.box
+
+vars/private-*.json
+vars/aws.json
