@@ -20,7 +20,6 @@
     "build_timestamp": "{{timestamp}}",
     "disk_size": "40520",
     "iso_checksum": "",
-    "iso_checksum_type": "sha256",
     "iso_url": "",
     "memory": "4096",
     "virtualbox_artifact_description": "",
@@ -70,7 +69,6 @@
       "headless": false,
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
       "memory": "{{user `memory`}}",
       "output_directory": "output-virtualbox-iso-{{user `build_timestamp`}}",
@@ -143,7 +141,6 @@
       "headless": false,
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "iso_url": "{{user `iso_url`}}",
       "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
@@ -182,7 +179,7 @@
       "environment_vars": [
         "ANSIBLE_VERSION={{user `ansible_version`}}"
       ],
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}' '{{user `ansible_install`}}'",
       "script": "scripts/ansible-centos.sh",
       "type": "shell"
     },
@@ -195,13 +192,13 @@
       "galaxy_file": "{{user `ansible_galaxy_file`}}",
       "playbook_dir": "{{user `ansible_playbook_dir`}}",
       "playbook_file": "{{user `ansible_playbook_file`}}",
+      "only": ["${ansible_role}"],
       "type": "ansible-local"
     },
     {
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}' '{{user `ansible_cleanup`}}'",
       "script": "scripts/cleanup-centos.sh",
       "type": "shell"
     }
   ]
 }
-

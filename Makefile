@@ -4,7 +4,47 @@ PACKER_CACHE_DIR ?= ~/packer_cache
 TEMPLATE_FILE ?= template-centos-7.json
 TIMESTAMP := $(shell date +%s)
 PLATFORM_VAR_FILE ?= vars/centos-07.06.json
-CUSTOM_VAR_FILE ?= vars/custom-template.json
+CUSTOM_VAR_FILE ?= vars/custom-var.json
+
+# -----------------------------------------------------------------------------
+# Setting ansible parameters
+# -----------------------------------------------------------------------------
+
+ifeq "$(ANSIBLE_MODE)" "install"
+	ansible_install:=true
+	ansible_cleanup:=false
+else ifeq "$(ANSIBLE_MODE)" "ephemeral"
+	ansible_install:=true
+	ansible_cleanup:=true
+else
+	ansible_install:=false
+	ansible_cleanup:=false
+endif
+
+ifeq ($(MAKECMDGOALS),amazon-ebs)
+	ifeq "$(ANSIBLE_MODE)" "none"
+		ansible_role:=virtualbox-iso
+	else
+		ansible_role:=amazon-ebs
+	endif
+endif
+
+ifeq ($(MAKECMDGOALS),virtualbox-iso)
+	ifeq "$(ANSIBLE_MODE)" "none"
+		ansible_role:=amazon-ebs
+	else
+		ansible_role:=virtualbox-iso
+	endif
+endif
+
+ifeq ($(MAKECMDGOALS),vmware-iso)
+	ifeq "$(ANSIBLE_MODE)" "none"
+		ansible_role:=amazon-ebs
+	else
+		ansible_role:=vmware-iso
+	endif
+endif
+
 
 # -----------------------------------------------------------------------------
 # The first "make" target runs as default.
@@ -37,17 +77,46 @@ make-packer-cache-dir:
 
 .PHONY: amazon-ebs
 amazon-ebs:
-	packer build -only=amazon-ebs -var-file $(PLATFORM_VAR_FILE) -var-file $(CUSTOM_VAR_FILE) $(TEMPLATE_FILE)
+	export ansible_role=$(ansible_role)
+	envsubst '$${ansible_role}' < $(TEMPLATE_FILE) > template.json
+	packer build \
+	-only=amazon-ebs \
+	-var 'ansible_install=$(ansible_install)' \
+	-var 'ansible_cleanup=$(ansible_cleanup)' \
+	-var-file $(PLATFORM_VAR_FILE) \
+	-var-file $(CUSTOM_VAR_FILE) \
+	template.json
+	rm template.json
 
 
 .PHONY: vmware-iso
 vmware-iso: make-packer-cache-dir
-	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) packer build -only=vmware-iso -var-file $(PLATFORM_VAR_FILE) -var-file $(CUSTOM_VAR_FILE) $(TEMPLATE_FILE)
+	export ansible_role=$(ansible_role)
+	envsubst '$${ansible_role}' < $(TEMPLATE_FILE) > template.json
+	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
+	packer build \
+	-only=vmware-iso \
+	-var 'ansible_install=$(ansible_install)' \
+	-var 'ansible_cleanup=$(ansible_cleanup)' \
+	-var-file $(PLATFORM_VAR_FILE) \
+	-var-file $(CUSTOM_VAR_FILE) \
+	template.json
+	rm template.json
 
 
 .PHONY: virtualbox-iso
 virtualbox-iso: make-packer-cache-dir
-	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) packer build -only=virtualbox-iso -var-file $(PLATFORM_VAR_FILE) -var-file $(CUSTOM_VAR_FILE) $(TEMPLATE_FILE)
+	export ansible_role=$(ansible_role)
+	envsubst '$${ansible_role}' < $(TEMPLATE_FILE) > template.json
+	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
+	packer build \
+	-only=virtualbox-iso \
+	-var 'ansible_install=$(ansible_install)' \
+	-var 'ansible_cleanup=$(ansible_cleanup)' \
+	-var-file $(PLATFORM_VAR_FILE) \
+	-var-file $(CUSTOM_VAR_FILE) \
+	template.json
+	rm template.json
 
 # -----------------------------------------------------------------------------
 # Utility targets

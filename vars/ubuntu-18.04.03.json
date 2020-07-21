@@ -1,7 +1,7 @@
 {
   "aws_image_name": "senzing-packer-ubuntu-18.04.3",
   "aws_source_ami": "",
-  "iso_checksum": "7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
+  "iso_checksum": "sha256:7d8e0055d663bffa27c1718685085626cb59346e7626ba3d3f476322271f573e",
   "iso_url": "http://old-releases.ubuntu.com/releases/18.04.3/ubuntu-18.04.3-server-amd64.iso",
   "virtualbox_artifact_description": "Ubuntu 18.04.3",
   "virtualbox_artifact_version": "18.04.3",
