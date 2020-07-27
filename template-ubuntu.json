@@ -238,7 +238,7 @@
       "galaxy_file": "{{user `ansible_galaxy_file`}}",
       "playbook_dir": "{{user `ansible_playbook_dir`}}",
       "playbook_file": "{{user `ansible_playbook_file`}}",
-      "only": ["${ansible_role}"],
+      "only": ["${ANSIBLE_ROLE}"],
       "type": "ansible-local"
     },
     {

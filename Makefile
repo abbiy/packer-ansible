@@ -44,6 +44,7 @@ ifeq ($(MAKECMDGOALS),vmware-iso)
 		ansible_role:=vmware-iso
 	endif
 endif
+export ANSIBLE_ROLE=$(ansible_role)
 
 
 # -----------------------------------------------------------------------------
@@ -77,8 +78,7 @@ make-packer-cache-dir:
 
 .PHONY: amazon-ebs
 amazon-ebs:
-	export ansible_role=$(ansible_role)
-	envsubst '$${ansible_role}' < $(TEMPLATE_FILE) > template.json
+	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
 	packer build \
 	-only=amazon-ebs \
 	-var 'ansible_install=$(ansible_install)' \
@@ -91,8 +91,7 @@ amazon-ebs:
 
 .PHONY: vmware-iso
 vmware-iso: make-packer-cache-dir
-	export ansible_role=$(ansible_role)
-	envsubst '$${ansible_role}' < $(TEMPLATE_FILE) > template.json
+	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
 	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
 	packer build \
 	-only=vmware-iso \
@@ -106,8 +105,7 @@ vmware-iso: make-packer-cache-dir
 
 .PHONY: virtualbox-iso
 virtualbox-iso: make-packer-cache-dir
-	export ansible_role=$(ansible_role)
-	envsubst '$${ansible_role}' < $(TEMPLATE_FILE) > template.json
+	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
 	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
 	packer build \
 	-only=virtualbox-iso \

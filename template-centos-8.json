@@ -12,9 +12,9 @@
     "aws_region": "us-east-1",
     "aws_secret_key": "",
     "aws_source_ami": "",
-    "aws_ssh_keypair_name": "aws-default-key-pair",
-    "aws_ssh_private_key_file": "~/.ssh/aws-default-key-pair.pem",
-    "aws_ssh_username": "ec2-user",
+    "aws_ssh_keypair_name": "chiahui_senzing_personal",
+    "aws_ssh_private_key_file": "~/chiahui_senzing_personal.pem",
+    "aws_ssh_username": "centos",
     "aws_subnet_id": "",
     "aws_vpc_id": "",
     "build_timestamp": "{{timestamp}}",
@@ -153,8 +153,7 @@
       "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
       "vmdk_name": "{{user `vmware_vmdk_name`}}-{{user `build_timestamp`}}",
       "vmx_data": {
-        "cpuid.coresPerSocket": "1",
-        "virtualHW.version": "14"
+        "cpuid.coresPerSocket": "1"
       }
     }
   ],
@@ -193,7 +192,7 @@
       "galaxy_file": "{{user `ansible_galaxy_file`}}",
       "playbook_dir": "{{user `ansible_playbook_dir`}}",
       "playbook_file": "{{user `ansible_playbook_file`}}",
-      "only": ["${ansible_role}"],
+      "only": ["${ANSIBLE_ROLE}"],
       "type": "ansible-local"
     },
     {

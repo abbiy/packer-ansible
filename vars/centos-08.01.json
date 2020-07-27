@@ -1,8 +1,8 @@
 {
-  "aws_image_name": "senzing-aws-linux2",
-  "aws_source_ami": "ami-0323c3dd2da7fb37d",
-  "iso_checksum": "sha256:3ee3f4ea1538e026fff763e2b284a6f20b259d91d1ad5688f5783a67d279423b",
-  "iso_url": "http://mirror.mobap.edu/centos/8.1.1911/isos/x86_64/CentOS-8.1.1911-x86_64-dvd1.iso",
+  "aws_image_name": "senzing-aws-centos8",
+  "aws_source_ami": "ami-01ca03df4a6012157",
+  "iso_url": "http://centos.s.uw.edu/centos/8/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso",
+  "iso_checksum": "sha256:47ab14778c823acae2ee6d365d76a9aed3f95bb8d0add23a06536b58bb5293c0",
   "virtualbox_artifact_description": "Centos 8.1.0",
   "virtualbox_artifact_version": "8.1",
   "virtualbox_guest_os_type": "RedHat_64",
