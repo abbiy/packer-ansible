@@ -13,6 +13,7 @@ VMware, VirtualBox, or AWS AMI.
     1. [Clone repository](#clone-repository)
     1. [Create AWS access key](#create-aws-access-key)
     1. [Custom var file](#custom-var-file)
+    1. [Ansible Mode](#ansible-mode)
     1. [Build using template-centos-7](#build-using-template-centos-7)
     1. [Build using template-centos-8](#build-using-template-centos-8)
     1. [Build using template-ubuntu](#build-using-template-ubuntu)
@@ -144,7 +145,7 @@ The Ansible installation on the image can be adjusted with the following modes:
 
 1. `install` - The Ansible package is installed, used and remains on the image.
 1. `ephemeral` - The Ansible package is installed, used and then removed from the image.
-1. `none` - The Ansible package is never installed on the image.
+1. `none` - The Ansible package is never installed on the image (default).
 
 Example:
 
