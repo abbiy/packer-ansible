@@ -5,6 +5,7 @@ TEMPLATE_FILE ?= template-centos-7.json
 TIMESTAMP := $(shell date +%s)
 PLATFORM_VAR_FILE ?= vars/centos-07.06.json
 CUSTOM_VAR_FILE ?= vars/custom-var.json
+ANSIBLE_MODE ?= none
 
 # -----------------------------------------------------------------------------
 # Setting ansible parameters
@@ -44,6 +45,7 @@ ifeq ($(MAKECMDGOALS),vmware-iso)
 		ansible_role:=vmware-iso
 	endif
 endif
+
 export ANSIBLE_ROLE=$(ansible_role)
 
 

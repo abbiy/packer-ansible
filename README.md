@@ -138,6 +138,20 @@ Example:
 export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 ```
 
+### Ansible Mode
+
+The Ansible installation on the image can be adjusted with the following modes:
+
+1. `install` - The Ansible package is installed, used and remains on the image.
+1. `ephemeral` - The Ansible package is installed, used and then removed from the image.
+1. `none` - The Ansible package is never installed on the image.
+
+Example:
+
+```console
+export ANSIBLE_MODE=install
+```
+
 ### Build using template-centos-7
 
 #### CentOS 7.6
@@ -150,6 +164,7 @@ export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 
     ```console
     cd ${GIT_REPOSITORY_DIR}
+    export ANSIBLE_MODE=
     export TEMPLATE_FILE=template-centos-7.json
     export PLATFORM_VAR_FILE=vars/centos-07.06.json
     export CUSTOM_VAR_FILE=vars/custom-var.json
