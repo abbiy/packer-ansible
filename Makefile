@@ -93,6 +93,7 @@ amazon-ebs:
 
 .PHONY: vmware-iso
 vmware-iso: make-packer-cache-dir
+	echo $(ANSIBLE_ROLE)
 	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
 	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
 	packer build \

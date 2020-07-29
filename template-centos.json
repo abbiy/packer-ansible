@@ -50,9 +50,7 @@
       "vpc_id": "{{user `aws_vpc_id`}}"
     },
     {
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-7.cfg<enter><wait>"
-      ],
+      "boot_command": ["{{user `boot_command`}}"
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
       "export_opts": [
@@ -132,11 +130,10 @@
       "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}"
     },
     {
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-7.cfg<enter><wait>"
-      ],
+      "boot_command": ["{{user `boot_command`}}"],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
+      "disk_type_id": 2,
       "guest_os_type": "{{user `vmware_guest_os_type`}}",
       "headless": false,
       "http_directory": "http",
@@ -145,10 +142,10 @@
       "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "ssh_password": "vagrant",
+      "memory": "{{user `memory`}}",
       "ssh_port": 22,
       "ssh_timeout": "2h",
       "ssh_username": "vagrant",
-      "tools_upload_flavor": "linux",
       "type": "vmware-iso",
       "vm_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
       "vmdk_name": "{{user `vmware_vmdk_name`}}-{{user `build_timestamp`}}",

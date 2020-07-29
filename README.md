@@ -14,8 +14,7 @@ VMware, VirtualBox, or AWS AMI.
     1. [Create AWS access key](#create-aws-access-key)
     1. [Custom var file](#custom-var-file)
     1. [Ansible Mode](#ansible-mode)
-    1. [Build using template-centos-7](#build-using-template-centos-7)
-    1. [Build using template-centos-8](#build-using-template-centos-8)
+    1. [Build using template-centos](#build-using-template-centos)
     1. [Build using template-ubuntu](#build-using-template-ubuntu)
 1. [Run on VMware Workstation](#run-on-vmware-workstation)
 1. [Run on Vagrant / VirtualBox](#run-on-vagrant--virtualbox)
@@ -123,7 +122,6 @@ and is accessed by the Packer `amazon-ebs` builder.
 1. `CUSTOM_VAR_FILE` - A user-configurable file specifying values to use during the build.
 
 In the examples below, the `CUSTOM_VAR_FILE` is set to `vars/custom-var.json`
-which is an empty file.
 In practice, this value should be modified to point to a user's custom file of variables.
 
 The `CUSTOM_VAR_FILE`, can be used to:
@@ -149,70 +147,59 @@ The Ansible installation on the image can be adjusted with the following modes:
 
 Example:
 
-```console
+```consol
 export ANSIBLE_MODE=install
 ```
 
-### Build using template-centos-7
+### Build using template-centos
 
 #### CentOS 7.6
 
-1. Linux 3.x kernel
+Example: amazon-ebs
 
-##### CentOS 7.6 virtualbox-iso
+```console
+cd ${GIT_REPOSITORY_DIR}
+export TEMPLATE_FILE=template-centos.json
+export PLATFORM_VAR_FILE=vars/centos-07.06.json
+export CUSTOM_VAR_FILE=vars/custom-var.json
+make amazon-ebs
+```
 
-1. Example:
+To build virtualbox, instead of `make amazon-ebs`, run the following:
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export ANSIBLE_MODE=
-    export TEMPLATE_FILE=template-centos-7.json
-    export PLATFORM_VAR_FILE=vars/centos-07.06.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make virtualbox-iso
-    ```
+```console
+make virtualbox-iso
+```
 
-##### CentOS 7.6 vmware-iso
+To build vmware-iso, instead of `make amazon-ebs`, run the following:
 
-1. Example:
+```console
+make vmware-iso
+```
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-centos-7.json
-    export PLATFORM_VAR_FILE=vars/centos-07.06.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make vmware-iso
-    ```
+#### CentOS 8.2
 
-### Build using template-centos-8
+Example: amazon-ebs
 
-#### CentOS 8.1
+```console
+cd ${GIT_REPOSITORY_DIR}
+export TEMPLATE_FILE=template-centos.json
+export PLATFORM_VAR_FILE=vars/centos-08.02.json
+export CUSTOM_VAR_FILE=vars/custom-var.json
+make amazon-ebs
+```
 
-1. Linux 4.x kernel
+To build virtualbox, instead of `make amazon-ebs`, run the following:
 
-##### CentOS 8.1 amazon-ebs
+```console
+make virtualbox-iso
+```
 
-1. Example:
+To build vmware-iso, instead of `make amazon-ebs`, run the following:
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-centos-8.json
-    export PLATFORM_VAR_FILE=vars/centos-08.01.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make amazon-ebs
-    ```
-
-##### CentOS 8.1 virtualbox-iso
-
-1. Example:
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-centos-8.json
-    export PLATFORM_VAR_FILE=vars/centos-08.01.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make virtualbox-iso
-    ```
+```console
+make vmware-iso
+```
 
 ### Build using template-debian
 
