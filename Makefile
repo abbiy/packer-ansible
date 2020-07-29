@@ -1,7 +1,7 @@
 # Default values.
 
 PACKER_CACHE_DIR ?= ~/packer_cache
-TEMPLATE_FILE ?= template-centos-7.json
+TEMPLATE_FILE ?= template-centos.json
 TIMESTAMP := $(shell date +%s)
 PLATFORM_VAR_FILE ?= vars/centos-07.06.json
 CUSTOM_VAR_FILE ?= vars/custom-var.json

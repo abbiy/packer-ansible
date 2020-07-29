@@ -4,23 +4,13 @@
     "ansible_playbook_dir": "",
     "ansible_playbook_file": "playbook.yaml",
     "ansible_version": "",
-    "aws_access_key": "",
     "aws_ami_regions": "us-east-1",
     "aws_image_name": "packer-centos",
     "aws_instance_type": "t2.micro",
-    "aws_mfa_code": "",
     "aws_region": "us-east-1",
-    "aws_secret_key": "",
-    "aws_source_ami": "",
-    "aws_ssh_keypair_name": "chiahui-test",
-    "aws_ssh_private_key_file": "~/chiahui-test.pem",
     "aws_ssh_username": "centos",
-    "aws_subnet_id": "",
-    "aws_vpc_id": "",
     "build_timestamp": "{{timestamp}}",
     "disk_size": "40520",
-    "iso_checksum": "",
-    "iso_url": "",
     "memory": "4096",
     "virtualbox_artifact_description": "",
     "virtualbox_artifact_version": "",
@@ -50,7 +40,7 @@
       "vpc_id": "{{user `aws_vpc_id`}}"
     },
     {
-      "boot_command": ["{{user `boot_command`}}"
+      "boot_command": ["{{user `boot_command`}}"],
       "boot_wait": "10s",
       "disk_size": "{{user `disk_size`}}",
       "export_opts": [

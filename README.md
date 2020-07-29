@@ -73,46 +73,6 @@ see [Environment Variables](https://github.com/Senzing/knowledge-base/blob/maste
 
 1. Follow steps in [clone-repository](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/clone-repository.md) to install the Git repository.
 
-### Create AWS access key
-
-:thinking: **Optional:** If creating an AWS AMI, an AWS access key is needed by Packer to access the account.
-This information is usually kept in `~/.aws/credentials`
-and is accessed by the Packer `amazon-ebs` builder.
-
-1. Create [Access keys for CLI, SDK, & API access](https://console.aws.amazon.com/iam/home?#/security_credentials).
-
-1. **Method #1:** Use the `aws` command line interface to create `~/.aws/credentials`.
-   Supply the information when prompted.
-   Example:
-
-    ```console
-    $ aws configure
-
-    AWS Access Key ID:
-    AWS Secret Access Key:
-    Default region name [us-east-1]:
-    Default output format [json]:
-    ```
-
-1. **Method #2:** :pencil2: Manually create a `~/.aws/credentials` file.
-   Example:
-
-    ```console
-    mkdir ~/.aws
-
-    cat <<EOT > ~/.aws/credentials
-    [default]
-    aws_access_key_id = AAAAAAAAAAAAAAAAAAAA
-    aws_secret_access_key = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    EOT
-
-    chmod 770 ~/.aws
-    chmod 750 ~/.aws/credentials
-    ```
-
-1. References:
-    1. Packer [using AWS authentication](https://www.packer.io/docs/builders/amazon/#authentication)
-
 ### Custom var file
 
 :thinking: The `Makefile` uses the following files to create virtual images:
@@ -155,7 +115,7 @@ export ANSIBLE_MODE=install
 
 #### CentOS 7.6
 
-Example: amazon-ebs
+Example: amazon-ebs (Before creating AMIs, go through the [AWS AMI setup](docs/AWS_AMI_SETUP.md) first)
 
 ```console
 cd ${GIT_REPOSITORY_DIR}
