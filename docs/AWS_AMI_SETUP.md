@@ -2,6 +2,7 @@
 
 1. Create AWS access keys
 1. Create AWS EC2 Key Pair
+1. (Optional) Set AWS Multi-factor authentication (MFA) credentials
 
 ## Create AWS access keys
 
@@ -56,5 +57,11 @@ to create the AMI. With access, Packer is able to run provisioners such as Ansib
   "aws_ssh_keypair_name": "packer-key",
   "aws_ssh_private_key_file": "~/packer-key.pem",
 }
-
 ```
+
+## (Optional) Set AWS Multi-factor authentication (MFA) credentials
+
+:thinking If the AWS account is setup with multi-factor authentication, a new set of access key id, key and session token
+has to generated ephemerally for packer to build the AMI.
+
+Do follow the [AWS MFA guide](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/set-aws-mfa-credentials.md) to setup the credentials required to build AMI.
