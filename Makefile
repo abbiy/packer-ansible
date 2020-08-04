@@ -30,6 +30,15 @@ ifeq ($(MAKECMDGOALS),amazon-ebs)
 	endif
 endif
 
+ifeq ($(MAKECMDGOALS),googlecompute)
+	PROJECT_ID:=$(shell grep "quota_project_id" ~/.config/gcloud/application_default_credentials.json | cut -d \" -f4)
+	ifeq "$(ANSIBLE_MODE)" "none"
+		ansible_role:=virtualbox-iso
+	else
+		ansible_role:=googlecompute
+	endif
+endif
+
 ifeq ($(MAKECMDGOALS),virtualbox-iso)
 	ifeq "$(ANSIBLE_MODE)" "none"
 		ansible_role:=amazon-ebs
@@ -85,6 +94,19 @@ amazon-ebs:
 	-only=amazon-ebs \
 	-var 'ansible_install=$(ansible_install)' \
 	-var 'ansible_cleanup=$(ansible_cleanup)' \
+	-var-file $(PLATFORM_VAR_FILE) \
+	-var-file $(CUSTOM_VAR_FILE) \
+	template.json
+	rm template.json
+
+.PHONY: googlecompute
+googlecompute:
+	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
+	packer build \
+	-only=googlecompute \
+	-var 'ansible_install=$(ansible_install)' \
+	-var 'ansible_cleanup=$(ansible_cleanup)' \
+	-var 'gcp_project_id=$(PROJECT_ID)' \
 	-var-file $(PLATFORM_VAR_FILE) \
 	-var-file $(CUSTOM_VAR_FILE) \
 	template.json

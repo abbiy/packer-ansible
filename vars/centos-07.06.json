@@ -7,15 +7,11 @@
   "virtualbox_artifact_description": "Centos 7.6.0",
   "virtualbox_artifact_version": "7.6",
   "virtualbox_guest_os_type": "RedHat_64",
-  "vm_name": "senzing-packer-centos-7.6",
+  "vm_name": "senzing-packer-centos-7-6",
   "vmware_guest_os_type": "centos-64",
   "vmware_vmdk_name": "senzing-packer-centos-7.6",
-  "gcp_account_file": "",
-  "gcp_project_id": "",
-  "gcp_source_image": "",
-  "gcp_zone": "",
-  "gcp_disk_size": "",
-  "gcp_image_family": "",
-  "gcp_machine_type": "",
-  "gcp_ssh_username": ""
+  "gcp_source_image": "centos-7-v20200714",
+  "gcp_zone": "us-central1-a",
+  "gcp_machine_type": "n1-standard-1",
+  "gcp_ssh_username": "vagrant"
 }

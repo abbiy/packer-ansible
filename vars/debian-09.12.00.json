@@ -6,7 +6,11 @@
   "virtualbox_artifact_description": "Debian 9.12.0",
   "virtualbox_artifact_version": "6.8",
   "virtualbox_guest_os_type": "Debian_64",
-  "vm_name": "senzing-packer-debian-9.12",
+  "vm_name": "senzing-packer-debian-9-12",
   "vmware_guest_os_type": "debian9-64",
-  "vmware_vmdk_name": "senzing-packer-debian-9.12"
+  "vmware_vmdk_name": "senzing-packer-debian-9.12",
+  "gcp_source_image": "debian-9-stretch-v20200714",
+  "gcp_zone": "us-central1-a",
+  "gcp_machine_type": "n1-standard-1",
+  "gcp_ssh_username": "vagrant"
 }

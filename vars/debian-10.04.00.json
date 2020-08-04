@@ -7,7 +7,11 @@
   "virtualbox_artifact_description": "Debian 10.4.0",
   "virtualbox_artifact_version": "10.4.0",
   "virtualbox_guest_os_type": "Debian_64",
-  "vm_name": "senzing-packer-debian-10.4",
+  "vm_name": "senzing-packer-debian-10-4",
   "vmware_guest_os_type": "debian10-64",
-  "vmware_vmdk_name": "senzing-packer-debian-10.4"
+  "vmware_vmdk_name": "senzing-packer-debian-10.4",
+  "gcp_source_image": "debian-10-buster-v20200714",
+  "gcp_zone": "us-central1-a",
+  "gcp_machine_type": "n1-standard-1",
+  "gcp_ssh_username": "vagrant"
 }

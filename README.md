@@ -15,6 +15,7 @@ VMware, VirtualBox, or AWS AMI.
     1. [Custom var file](#custom-var-file)
     1. [Ansible Mode](#ansible-mode)
     1. [Build using template-centos](#build-using-template-centos)
+    1. [Build using template-debian](#build-using-template-debian)
     1. [Build using template-ubuntu](#build-using-template-ubuntu)
 1. [Run on VMware Workstation](#run-on-vmware-workstation)
 1. [Run on Vagrant / VirtualBox](#run-on-vagrant--virtualbox)
@@ -52,7 +53,8 @@ The following software programs need to be installed:
 1. [make](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-make.md)
 1. [packer](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-packer.md)
 1. Builders (not all may be needed):
-    1. [AWS commandline interface](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-aws-cli.md)
+    1. [AWS command line interface](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-aws-cli.md)
+    1. [GCP command line interface](https://cloud.google.com/sdk/install)
     1. [VMware Workstation](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-vmware-workstation.md)
     1. [Vagrant](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-vagrant.md)
     1. [VirtualBox](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/install-virtualbox.md)
@@ -125,6 +127,12 @@ export CUSTOM_VAR_FILE=vars/custom-var.json
 make amazon-ebs
 ```
 
+To build GCP Compute Images (Before creating images, go through the [GCP Compute Image setup](docs/GCP_IMAGE_SETUP.md) first), instead of `make amazon-ebs`, run the following:
+
+```console
+make googlecompute
+```
+
 To build virtualbox, instead of `make amazon-ebs`, run the following:
 
 ```console
@@ -149,6 +157,12 @@ export CUSTOM_VAR_FILE=vars/custom-var.json
 make amazon-ebs
 ```
 
+To build GCP Compute Images (Before creating images, go through the [GCP Compute Image setup](docs/GCP_IMAGE_SETUP.md) first), instead of `make amazon-ebs`, run the following:
+
+```console
+make googlecompute
+```
+
 To build virtualbox, instead of `make amazon-ebs`, run the following:
 
 ```console
@@ -163,79 +177,97 @@ make vmware-iso
 
 ### Build using template-debian
 
+#### Debian 9.12
+
+Example: amazon-ebs
+
+```console
+cd ${GIT_REPOSITORY_DIR}
+export TEMPLATE_FILE=template-debian.json
+export PLATFORM_VAR_FILE=vars/debian-09.12.00.json
+export CUSTOM_VAR_FILE=vars/custom-var.json
+make amazon-ebs
+```
+
+To build GCP Compute Images (Before creating images, go through the [GCP Compute Image setup](docs/GCP_IMAGE_SETUP.md) first), instead of `make amazon-ebs`, run the following:
+
+```console
+make googlecompute
+```
+
+To build virtualbox, instead of `make amazon-ebs`, run the following:
+
+```console
+make virtualbox-iso
+```
+
+To build vmware-iso, instead of `make amazon-ebs`, run the following:
+
+```console
+make vmware-iso
+```
+
 #### Debian 10.04.00
 
-1. Linux 4.19 kernel
+Example: amazon-ebs
 
-##### Debian 10.04.00 amazon-ebs
+```console
+cd ${GIT_REPOSITORY_DIR}
+export TEMPLATE_FILE=template-debian.json
+export PLATFORM_VAR_FILE=vars/debian-10.04.00.json
+export CUSTOM_VAR_FILE=vars/custom-var.json
+make amazon-ebs
+```
 
-1. To use AWS Debian AMI, a subscription is required:
-    1. [Debian 10.4](https://aws.amazon.com/marketplace/pp/Debian-Debian-10-Buster/B0859NK4HC)
-        1. `ami-0b9a611a02047d3b1` - US East (N.Virginia)
+To build GCP Compute Images (Before creating images, go through the [GCP Compute Image setup](docs/GCP_IMAGE_SETUP.md) first), instead of `make amazon-ebs`, run the following:
 
-1. Example:
+```console
+make googlecompute
+```
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-debian.json
-    export PLATFORM_VAR_FILE=vars/debian-10.04.00.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make amazon-ebs
-    ```
+To build virtualbox, instead of `make amazon-ebs`, run the following:
 
-##### Debian 10.04.00 virtualbox-iso
+```console
+make virtualbox-iso
+```
 
-1. Example:
+To build vmware-iso, instead of `make amazon-ebs`, run the following:
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-debian.json
-    export PLATFORM_VAR_FILE=vars/debian-10.04.00.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make virtualbox-iso
-    ```
+```console
+make vmware-iso
+```
 
 ### Build using template-ubuntu
 
 #### Ubuntu 18.04.04
 
-1. Linux 4.15 kernel
+Example: amazon-ebs
 
-##### Ubuntu 18.04.04 amazon-ebs
+```console
+cd ${GIT_REPOSITORY_DIR}
+export TEMPLATE_FILE=template-ubuntu.json
+export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
+export CUSTOM_VAR_FILE=vars/custom-var.json
+make amazon-ebs
+```
 
-1. Example:
+To build GCP Compute Images (Before creating images, go through the [GCP Compute Image setup](docs/GCP_IMAGE_SETUP.md) first), instead of `make amazon-ebs`, run the following:
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-ubuntu.json
-    export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make amazon-ebs
-    ```
+```console
+make googlecompute
+```
 
-##### Ubuntu 18.04.04 virtualbox-iso
+To build virtualbox, instead of `make amazon-ebs`, run the following:
 
-1. Example:
+```console
+make virtualbox-iso
+```
 
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-ubuntu.json
-    export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make virtualbox-iso
-    ```
+To build vmware-iso, instead of `make amazon-ebs`, run the following:
 
-##### Ubuntu 18.04.04 vmware-iso
-
-1. Example:
-
-    ```console
-    cd ${GIT_REPOSITORY_DIR}
-    export TEMPLATE_FILE=template-ubuntu.json
-    export PLATFORM_VAR_FILE=vars/ubuntu-18.04.04.json
-    export CUSTOM_VAR_FILE=vars/custom-var.json
-    make vmware-iso
-    ```
+```console
+make vmware-iso
+```
 
 ## Run on VMware Workstation
 

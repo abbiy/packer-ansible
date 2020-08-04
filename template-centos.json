@@ -145,13 +145,10 @@
     },
     {
       "type": "googlecompute",
-      "account_file": "{{user `gcp_account_file`}}",
       "project_id": "{{user `gcp_project_id`}}",
       "source_image": "{{user `gcp_source_image`}}",
       "zone": "{{user `gcp_zone`}}",
-      "disk_size": "{{user `gcp_disk_size`}}",
-      "image_family": "{{user `gcp_image_family`}}",
-      "image_name": "centos7-base-v{{isotime \"20060102\"}}",
+      "image_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
       "machine_type": "{{user `gcp_machine_type`}}",
       "ssh_username": "{{user `gcp_ssh_username`}}"
     }
