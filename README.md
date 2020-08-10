@@ -11,7 +11,6 @@ VMware, VirtualBox, or AWS AMI.
 1. [Build](#build)
     1. [Prerequisite software](#prerequisite-software)
     1. [Clone repository](#clone-repository)
-    1. [Create AWS access key](#create-aws-access-key)
     1. [Custom var file](#custom-var-file)
     1. [Ansible Mode](#ansible-mode)
     1. [Build using template-centos](#build-using-template-centos)
