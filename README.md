@@ -91,6 +91,7 @@ The `CUSTOM_VAR_FILE`, can be used to:
 1. Add Multifactor Authentication information
 1. Specify SSH keys
 1. Change disk or memory size
+1. Specify an [AMI Marketplace Image](docs/AWS_MARKETPLACE_SETUP.md)
 
 Example:
 
