@@ -24,7 +24,7 @@ endif
 
 ifeq ($(MAKECMDGOALS),amazon-ebs)
 	ifeq "$(ANSIBLE_MODE)" "none"
-		ansible_role:=virtualbox-iso
+		ansible_role:=null
 	else
 		ansible_role:=amazon-ebs
 	endif
@@ -33,7 +33,7 @@ endif
 ifeq ($(MAKECMDGOALS),googlecompute)
 	PROJECT_ID:=$(shell grep "quota_project_id" ~/.config/gcloud/application_default_credentials.json | cut -d \" -f4)
 	ifeq "$(ANSIBLE_MODE)" "none"
-		ansible_role:=virtualbox-iso
+		ansible_role:=null
 	else
 		ansible_role:=googlecompute
 	endif
@@ -41,7 +41,7 @@ endif
 
 ifeq ($(MAKECMDGOALS),virtualbox-iso)
 	ifeq "$(ANSIBLE_MODE)" "none"
-		ansible_role:=amazon-ebs
+		ansible_role:=null
 	else
 		ansible_role:=virtualbox-iso
 	endif
@@ -49,7 +49,7 @@ endif
 
 ifeq ($(MAKECMDGOALS),vmware-iso)
 	ifeq "$(ANSIBLE_MODE)" "none"
-		ansible_role:=amazon-ebs
+		ansible_role:=null
 	else
 		ansible_role:=vmware-iso
 	endif

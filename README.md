@@ -87,7 +87,7 @@ In practice, this value should be modified to point to a user's custom file of v
 
 The `CUSTOM_VAR_FILE`, can be used to:
 
-1. Specify an Ansible playbook.
+1. Specify an [Ansible playbook](docs/PLAYBOOK_SETUP.md).
 1. Add Multifactor Authentication information
 1. Specify SSH keys
 1. Change disk or memory size

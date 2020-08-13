@@ -6,7 +6,7 @@
 
 ## Create AWS access keys
 
-:thinking When creating an AWS AMI, an AWS access key is needed by Packer to access the account.
+:thinking: When creating an AWS AMI, an AWS access key is needed by Packer to access the account.
 This information is usually kept in `~/.aws/credentials` and is accessed by the Packer `amazon-ebs` builder.
 
 1. Create [Access keys for CLI, SDK, & API access](https://console.aws.amazon.com/iam/home?#/security_credentials).
@@ -45,7 +45,7 @@ This information is usually kept in `~/.aws/credentials` and is accessed by the 
 
 ## Create AWS EC2 Key Pair
 
-:thinking When creating an AWS AMI, a EC2 key pair is required by Packer to access the EC2 instance that is used
+:thinking: When creating an AWS AMI, a EC2 key pair is required by Packer to access the EC2 instance that is used
 to create the AMI. With access, Packer is able to run provisioners such as Ansible on the EC2 instance
 
 1. Create [EC2 key pair](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#prepare-key-pair)
@@ -61,7 +61,7 @@ to create the AMI. With access, Packer is able to run provisioners such as Ansib
 
 ## (Optional) Set AWS Multi-factor authentication (MFA) credentials
 
-:thinking If the AWS account is setup with multi-factor authentication, a new set of access key id, key and session token
+:thinking: If the AWS account is setup with multi-factor authentication, a new set of access key id, key and session token
 has to generated ephemerally for packer to build the AMI.
 
 Do follow the [AWS MFA guide](https://github.com/Senzing/knowledge-base/blob/master/HOWTO/set-aws-mfa-credentials.md) to setup the credentials required to build AMI.

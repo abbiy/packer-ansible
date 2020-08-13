@@ -1,6 +1,6 @@
 {
   "variables": {
-    "ansible_galaxy_file": "requirements.yaml",
+    "ansible_galaxy_file": "",
     "ansible_playbook_dir": "",
     "ansible_playbook_file": "playbook.yaml",
     "ansible_version": "",

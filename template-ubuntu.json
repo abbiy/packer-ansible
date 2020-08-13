@@ -1,6 +1,6 @@
 {
   "variables": {
-    "ansible_galaxy_file": "requirements.yaml",
+    "ansible_galaxy_file": "",
     "ansible_playbook_dir": "",
     "ansible_playbook_file": "playbook.yaml",
     "ansible_version": "",
@@ -210,6 +210,9 @@
       "image_name": "{{user `vm_name`}}-{{user `build_timestamp`}}",
       "machine_type": "{{user `gcp_machine_type`}}",
       "ssh_username": "{{user `gcp_ssh_username`}}"
+    },
+    {
+      "type": "null"
     }
   ],
   "post-processors": [
