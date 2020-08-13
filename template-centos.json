@@ -28,7 +28,6 @@
       "ami_virtualization_type": "hvm",
       "associate_public_ip_address": true,
       "instance_type": "{{user `aws_instance_type`}}",
-      "mfa_code": "{{user `aws_mfa_code`}}",
       "region": "{{user `aws_region`}}",
       "secret_key": "{{user `aws_secret_key`}}",
       "source_ami": "{{user `aws_source_ami`}}",
