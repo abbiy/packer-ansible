@@ -9,3 +9,4 @@ output-*/
 
 vars/private-*.json
 vars/aws.json
+template.json

@@ -12,6 +12,7 @@ VMware, VirtualBox, or AWS AMI.
     1. [Prerequisite software](#prerequisite-software)
     1. [Clone repository](#clone-repository)
     1. [Custom var file](#custom-var-file)
+    1. [Packer Cache](#packer-cache)
     1. [Ansible Mode](#ansible-mode)
     1. [Build using template-centos](#build-using-template-centos)
     1. [Build using template-debian](#build-using-template-debian)
@@ -99,9 +100,19 @@ Example:
 export CUSTOM_VAR_FILE=~/my-vars/my-custom-var.json
 ```
 
+### Packer Cache
+
+:pencil2: Packer cache the downloaded images into a folder called packer_cache. By default, the packer_cache folder is created in the packer-ansible folder. To modify the location of the packer cache folder, simply export the following variable:
+
+Example:
+
+```consol
+export PACKER_CACHE_DIR=/path/to/packer_cache
+```
+
 ### Ansible Mode
 
-The Ansible installation on the image can be adjusted with the following modes:
+:pencil2: The Ansible installation on the image can be adjusted with the following modes:
 
 1. `install` - The Ansible package is installed, used and remains on the image.
 1. `ephemeral` - The Ansible package is installed, used and then removed from the image.

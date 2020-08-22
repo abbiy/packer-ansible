@@ -1,6 +1,4 @@
 # Default values.
-
-PACKER_CACHE_DIR ?= ~/packer_cache
 TEMPLATE_FILE ?= template-centos.json
 TIMESTAMP := $(shell date +%s)
 PLATFORM_VAR_FILE ?= vars/centos-07.06.json
@@ -76,14 +74,6 @@ help:
 	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$' | xargs
 
 # -----------------------------------------------------------------------------
-# Utility targets.
-# -----------------------------------------------------------------------------
-
-.PHONY: make-packer-cache-dir
-make-packer-cache-dir:
-	mkdir -p $(PACKER_CACHE_DIR)
-
-# -----------------------------------------------------------------------------
 # Build specific images.
 # -----------------------------------------------------------------------------
 
@@ -114,10 +104,9 @@ googlecompute:
 
 
 .PHONY: vmware-iso
-vmware-iso: make-packer-cache-dir
+vmware-iso:
 	echo $(ANSIBLE_ROLE)
 	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
-	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
 	packer build \
 	-only=vmware-iso \
 	-var 'ansible_install=$(ansible_install)' \
@@ -129,9 +118,8 @@ vmware-iso: make-packer-cache-dir
 
 
 .PHONY: virtualbox-iso
-virtualbox-iso: make-packer-cache-dir
+virtualbox-iso:
 	envsubst '$${ANSIBLE_ROLE}' < $(TEMPLATE_FILE) > template.json
-	PACKER_CACHE_DIR=$(PACKER_CACHE_DIR) \
 	packer build \
 	-only=virtualbox-iso \
 	-var 'ansible_install=$(ansible_install)' \
