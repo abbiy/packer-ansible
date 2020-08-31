@@ -126,6 +126,7 @@
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_url": "{{user `iso_url`}}",
+      "network": "vmnet8",
       "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -P now",
       "ssh_password": "vagrant",

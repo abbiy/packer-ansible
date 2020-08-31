@@ -159,6 +159,7 @@
       "iso_url": "{{user `iso_url`}}",
       "version": 14,
       "memory": "{{ user `memory` }}",
+      "network": "vmnet8",
       "output_directory": "output-vmware-iso-{{user `build_timestamp`}}",
       "shutdown_command": "echo 'vagrant' | sudo -S /sbin/shutdown -hP now",
       "ssh_password": "vagrant",
