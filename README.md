@@ -25,7 +25,7 @@ VMware, VirtualBox, or AWS AMI.
     1. [Find guest machine IP address](#find-guest-machine-ip-address)
     1. [Remote login to guest machine](#remote-login-to-guest-machine)
     1. [Remove image from Vagrant library](#remove-image-from-vagrant-library)
-1. [Archive builds](#archive-builds)
+1. [Troubleshoot](#troubleshoot)
 1. [References](#references)
 
 #### Legend
@@ -390,7 +390,17 @@ To remove Vagrant image, on host machine:
 vagrant box remove ${VAGRANT_NAME}
 ```
 
-## Archive builds
+## Troubleshoot
+
+If the following error surfaces
+
+```console
+Build 'vmware-iso' errored: Error detecting host IP: Could not find vmnetdhcp conf file:
+```
+
+To resolve the error, include the following in the template's vmware-iso builder,
+
+`"network": "vmnet8"`
 
 ## References
 
