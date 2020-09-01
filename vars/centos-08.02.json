@@ -1,0 +1,17 @@
+{
+  "aws_image_name": "senzing-aws-centos8",
+  "aws_source_ami": "ami-01ca03df4a6012157",
+  "iso_url": "http://centos.s.uw.edu/centos/8/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso",
+  "iso_checksum": "sha256:47ab14778c823acae2ee6d365d76a9aed3f95bb8d0add23a06536b58bb5293c0",
+  "boot_command": "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kickstart-centos-8.cfg<enter><wait>",
+  "virtualbox_artifact_description": "Centos 8.2.0",
+  "virtualbox_artifact_version": "8.2",
+  "virtualbox_guest_os_type": "RedHat_64",
+  "vm_name": "senzing-packer-centos-8-2",
+  "vmware_guest_os_type": "centos-64",
+  "vmware_vmdk_name": "senzing-packer-centos-8.2",
+  "gcp_source_image": "centos-8-v20200714",
+  "gcp_zone": "us-central1-a",
+  "gcp_machine_type": "n1-standard-1",
+  "gcp_ssh_username": "vagrant"
+}
